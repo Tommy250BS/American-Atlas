@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4e8d2">
+  <meta name="description" content="50 states. 50 capitals. One road trip. A daily geography game from American Atlas.">
+  <title>American Atlas — The Daily Road Trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="paper-grain" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="#home" aria-label="American Atlas home">
+      <span class="brand-mark">AA</span>
+      <span class="brand-name">AMERICAN <b>ATLAS</b><small>THE DAILY ROAD TRIP</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-link active" data-view="home">The trip</button>
+      <button class="nav-link" data-view="explore">Explore</button>
+      <button class="nav-link" data-view="collection">My atlas <span class="collection-count" id="navCount">00</span></button>
+    </nav>
+    <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">♫ <span>OFF</span></button>
+  </header>
+
+  <main class="shell">
+    <section class="view active" id="homeView" aria-labelledby="homeTitle">
+      <div class="home-kicker"><span class="eyebrow">YOUR DAILY AMERICAN ROAD TRIP</span><span class="edition-chip">VOL. 01 <i>·</i> DAILY EDITION</span></div>
+      <div class="hero-copy">
+        <div class="hero-title-wrap">
+          <p class="issue-date" id="todayDate">TUESDAY, NOVEMBER 24, 2026</p>
+          <h1 id="homeTitle">50 states.<br><em>50 capitals.</em><br><span>One road trip.</span></h1>
+          <p class="hero-lede">Every day, a new destination. Follow the clues, read the map, and find the capital hiding somewhere across America.</p>
+          <button class="primary-button" id="startTrip">START TODAY’S TRIP <span>↗</span></button>
+          <div class="hero-meta"><span><b>06</b> GUESSES</span><span class="meta-dot">✳</span><span><b>01</b> MYSTERY CITY</span><span class="meta-dot">✳</span><span><b>50</b> STATES</span></div>
+        </div>
+        <figure class="hero-art">
+          <img src="road-trip-hero.png" alt="Vintage travel-poster illustration of a convertible driving through a sunlit desert highway" />
+          <figcaption><span>THE OPEN ROAD</span><span>NO. 001 — WESTBOUND</span></figcaption>
+          <span class="art-stamp">TAKE<br>THE<br>SCENIC<br>ROUTE</span>
+        </figure>
+      </div>
+      <div class="home-lower">
+        <article class="welcome-note">
+          <span class="eyebrow">A LITTLE ADVENTURE, EVERY DAY</span>
+          <h2>America is<br><em>waiting out there.</em></h2>
+          <p>From the Pacific coast to the Atlantic shore, from mountain towns to desert crossroads — there are fifty state capitals to discover.</p>
+          <button class="text-button" data-view="explore">TAKE A LOOK AROUND <span>→</span></button>
+        </article>
+        <article class="route-card">
+          <div class="route-card-top"><span class="eyebrow">YOUR TRAVEL LOG</span><span class="route-number">50 / 50</span></div>
+          <div class="route-line" aria-hidden="true"><span></span><i></i><span></span></div>
+          <div class="route-labels"><span>THE FIRST MILE</span><span>THE WHOLE COUNTRY</span></div>
+          <div class="progress-row"><strong id="homeProgress">0</strong><span>capitals collected</span><b id="homePercent">0%</b></div>
+          <div class="progress-track"><span id="homeProgressBar"></span></div>
+          <p class="route-foot">Every solved city becomes a postcard in your personal atlas.</p>
+        </article>
+      </div>
+      <footer class="site-footer"><span>AMERICAN ATLAS <i>✳</i> EST. 2026</span><span>MADE FOR THE LOVE OF THE ROAD</span></footer>
+    </section>
+
+    <section class="view" id="gameView" aria-labelledby="gameTitle">
+      <div class="section-topline"><button class="back-link" data-view="home">← BACK TO THE PORCH</button><span class="eyebrow">DAILY TRIP <b id="editionNumber">#001</b></span></div>
+      <div class="game-heading"><div><p class="issue-date" id="gameDate">TODAY’S EDITION</p><h1 id="gameTitle">Find the<br><em>mystery capital.</em></h1></div><div class="attempt-counter"><strong id="attemptsLeft">06</strong><span>GUESSES<br>LEFT</span></div></div>
+      <p class="game-intro">Somewhere across the United States, one state capital is waiting. Pick a city and let the clues guide you.</p>
+      <div class="game-layout">
+        <section class="map-panel" aria-label="Stylized United States state map">
+          <div class="map-panel-head"><span class="eyebrow">THE UNITED STATES</span><span class="map-scale">50 STATES <i>·</i> 1 DESTINATION</span></div>
+          <div class="tile-map-wrap">
+            <div class="tile-map" id="tileMap" aria-label="Clickable state tile map"></div>
+            <div class="map-insets"><div class="inset-label">ALASKA</div><div class="inset-label">HAWAII</div></div>
+          </div>
+          <div class="map-legend"><span><i class="legend-dot guess-dot"></i> YOUR GUESSES</span><span><i class="legend-dot solved-dot"></i> COLLECTED</span><span class="map-note">SELECT A STATE TO FILTER CITIES</span></div>
+        </section>
+        <section class="guess-panel">
+          <div class="guess-panel-top"><span class="eyebrow">YOUR NEXT STOP</span><span class="mode-tag">CLASSIC MODE</span></div>
+          <h2>Where are we<br><em>headed?</em></h2>
+          <form id="guessForm" class="guess-form">
+            <label for="cityInput">ENTER A STATE CAPITAL</label>
+            <div class="input-row"><input id="cityInput" list="citySuggestions" autocomplete="off" placeholder="e.g. Santa Fe" required><datalist id="citySuggestions"></datalist><button type="submit" aria-label="Submit guess">↗</button></div>
+          </form>
+          <p class="feedback" id="feedback" aria-live="polite">Choose a city. We’ll tell you how far away you are.</p>
+          <div class="guess-list-head"><span class="eyebrow">YOUR TRAVEL NOTES</span><span id="guessCount">0 / 6</span></div>
+          <ol class="guess-list" id="guessList"><li class="empty-note">Your first stop will appear here.</li></ol>
+          <div class="mode-note"><span>✳</span> Distance is measured as the crow flies, not by road.</div>
+        </section>
+      </div>
+      <div class="game-bottom"><span>KEEP YOUR EYES ON THE HORIZON.</span><span>AMERICAN ATLAS <i>✳</i></span></div>
+    </section>
+
+    <section class="view" id="exploreView" aria-labelledby="exploreTitle">
+      <div class="section-topline"><button class="back-link" data-view="home">← BACK TO THE PORCH</button><span class="eyebrow">THE GREAT AMERICAN ROAD MAP</span></div>
+      <div class="explore-heading"><p class="issue-date">YOUR FIELD GUIDE</p><h1 id="exploreTitle">Get to know<br><em>the neighborhood.</em></h1><p>Fifty states, fifty capital cities, and a whole lot of ground in between.</p></div>
+      <div class="explore-stats"><div><strong>50</strong><span>STATES</span></div><div><strong>50</strong><span>CAPITALS</span></div><div><strong>1</strong><span>BIG ADVENTURE</span></div></div>
+      <div class="state-directory" id="stateDirectory"></div>
+    </section>
+
+    <section class="view" id="collectionView" aria-labelledby="collectionTitle">
+      <div class="section-topline"><button class="back-link" data-view="home">← BACK TO THE PORCH</button><span class="eyebrow">YOUR PERSONAL FIELD NOTES</span></div>
+      <div class="explore-heading"><p class="issue-date">THE POSTCARD WALL</p><h1 id="collectionTitle">Places you’ve<br><em>made your own.</em></h1><p>Every capital you find earns a place in your growing American atlas.</p></div>
+      <div class="collection-summary"><strong id="collectionProgress">0 / 50</strong><span>CAPITALS DISCOVERED</span><div class="progress-track"><span id="collectionBar"></span></div></div>
+      <div class="postcard-grid" id="postcardGrid"><p class="empty-note">Your first postcard is just around the bend. Play today’s trip to collect it.</p></div>
+    </section>
+
+    <section class="result-modal hidden" id="resultModal" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+      <div class="postcard-result"><div class="postcard-topline"><span>AMERICAN ATLAS <i>✳</i></span><span>FIELD NOTE NO. <b id="resultNo">001</b></span></div><div class="postcard-art" id="resultArt"><span>GREETINGS FROM</span><strong id="resultState">THE GREAT AMERICAN ROAD</strong></div><div class="postcard-copy"><p class="eyebrow" id="resultStatus">DESTINATION REACHED</p><h2 id="resultTitle">You made it!</h2><p id="resultText">A new capital for your collection.</p><div class="postcard-stats"><span><b id="resultGuesses">03</b> GUESSES</span><span><b id="resultDistance">—</b> MILES OF CURIOSITY</span></div></div><button class="primary-button" id="closeResult">BACK TO THE ATLAS <span>↗</span></button></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
