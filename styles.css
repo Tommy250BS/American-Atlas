@@ -20,3 +20,11 @@
 .home-journal-links button b{font:22px var(--serif);font-weight:400}
 .home-journal-links button i{font:8px var(--mono);font-style:normal;letter-spacing:.1em;color:var(--sage)}
 @media(max-width:650px){.home-journal-links{grid-template-columns:1fr}.home-journal-links button{padding:12px 14px}.home-journal-links button b{font-size:20px}}
+
+/* V7 — searchable fifty-city Field Notes index */
+.fieldnotes-tools{display:grid;grid-template-columns:1fr auto;gap:9px 16px;align-items:center;margin:28px 0 14px;padding:16px 18px;border:1px solid rgba(40,55,48,.22);background:rgba(255,252,244,.72)}
+.fieldnotes-tools label{grid-column:1/-1;font:700 10px/1.2 var(--font-mono,monospace);letter-spacing:.13em;color:var(--ink-muted,#68675f)}
+.fieldnotes-tools input{width:100%;min-width:0;padding:12px 13px;border:1px solid rgba(40,55,48,.28);background:#fffdf7;color:var(--ink,#252a25);font:500 14px var(--font-sans,Arial,sans-serif);outline-offset:3px}
+.fieldnotes-tools .eyebrow{white-space:nowrap;text-align:right}
+#fieldNotesEmpty{margin:18px 0}
+@media(max-width:560px){.fieldnotes-tools{grid-template-columns:1fr}.fieldnotes-tools .eyebrow{text-align:left}}
