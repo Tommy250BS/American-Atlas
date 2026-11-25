@@ -21,6 +21,7 @@
     <nav class="main-nav" aria-label="Main navigation">
       <button class="nav-link active" data-view="home">The trip</button>
       <button class="nav-link" data-view="explore">Explore</button>
+      <button class="nav-link" data-view="journal">The journal</button>
       <button class="nav-link" data-view="collection">My atlas <span class="collection-count" id="navCount">00</span></button>
     </nav>
     <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">♫ <span>OFF</span></button>
@@ -59,6 +60,10 @@
           <p class="route-foot">Every solved city becomes a postcard in your personal atlas.</p>
         </article>
       </div>
+      <section class="home-journal-promo">
+        <div><p class="eyebrow">THE AMERICAN ATLAS JOURNAL</p><h2>There's more to<br><em>the journey.</em></h2><p>City stories, state portraits, and roads worth taking the long way for.</p></div>
+        <button class="primary-button" data-view="journal">OPEN THE JOURNAL <span>↗</span></button>
+      </section>
       <footer class="site-footer"><span>AMERICAN ATLAS <i>✳</i> EST. 2026</span><span>MADE FOR THE LOVE OF THE ROAD</span></footer>
     </section>
 
@@ -68,12 +73,12 @@
       <p class="game-intro">Somewhere across the United States, one state capital is waiting. Pick a city and let the clues guide you.</p>
       <div class="game-layout">
         <section class="map-panel" aria-label="Stylized United States state map">
-          <div class="map-panel-head"><span class="eyebrow">THE UNITED STATES</span><span class="map-scale">50 STATES <i>·</i> 1 DESTINATION</span></div>
+          <div class="map-panel-head"><span class="eyebrow">THE 50-STATE INDEX</span><span class="map-scale">CARTOGRAM <i>·</i> NOT TO SCALE</span></div>
           <div class="tile-map-wrap">
             <div class="tile-map" id="tileMap" aria-label="Clickable state tile map"></div>
             <div class="map-insets"><div class="inset-label">ALASKA</div><div class="inset-label">HAWAII</div></div>
           </div>
-          <div class="map-legend"><span><i class="legend-dot guess-dot"></i> YOUR GUESSES</span><span><i class="legend-dot solved-dot"></i> COLLECTED</span><span class="map-note">SELECT A STATE TO FILTER CITIES</span></div>
+          <div class="map-legend"><span><i class="legend-dot guess-dot"></i> YOUR GUESSES</span><span><i class="legend-dot solved-dot"></i> COLLECTED</span><span class="map-note">SELECT A STATE TO FILTER CAPITALS</span></div>
         </section>
         <section class="guess-panel">
           <div class="guess-panel-top"><span class="eyebrow">YOUR NEXT STOP</span><span class="mode-tag">CLASSIC MODE</span></div>
@@ -96,6 +101,38 @@
       <div class="explore-heading"><p class="issue-date">YOUR FIELD GUIDE</p><h1 id="exploreTitle">Get to know<br><em>the neighborhood.</em></h1><p>Fifty states, fifty capital cities, and a whole lot of ground in between.</p></div>
       <div class="explore-stats"><div><strong>50</strong><span>STATES</span></div><div><strong>50</strong><span>CAPITALS</span></div><div><strong>1</strong><span>BIG ADVENTURE</span></div></div>
       <div class="state-directory" id="stateDirectory"></div>
+    </section>
+
+    <section class="view" id="journalView" aria-labelledby="journalTitle">
+      <div class="section-topline"><button class="back-link" data-view="home">← BACK TO THE PORCH</button><span class="eyebrow">THE AMERICAN ATLAS JOURNAL</span></div>
+      <div class="explore-heading journal-heading"><p class="issue-date">NOTES FROM THE OPEN ROAD</p><h1 id="journalTitle">A country worth<br><em>looking closer at.</em></h1><p>Three ways to travel beyond the answer: the stories behind the capitals, the character of each state, and the long roads that connect them.</p></div>
+      <div class="journal-grid">
+        <button class="journal-card field-card" data-view="fieldnotes"><span class="journal-index">01 / CITY STORIES</span><span class="journal-art art-field">FIELD<br>NOTES</span><strong>Field Notes</strong><span>Small stories, curious details, and the history hiding in each capital city.</span><i>OPEN THE NOTEBOOK ↗</i></button>
+        <button class="journal-card spotlight-card" data-view="spotlight"><span class="journal-index">02 / STATE PORTRAITS</span><span class="journal-art art-spotlight">STATE<br>SPOTLIGHT</span><strong>State Spotlight</strong><span>One state at a time: landscape, identity, symbols, and places worth knowing.</span><i>MEET THE STATES ↗</i></button>
+        <button class="journal-card long-card" data-view="longway"><span class="journal-index">03 / ROADS & ROUTES</span><span class="journal-art art-long">THE LONG<br>WAY 'ROUND</span><strong>The Long Way 'Round</strong><span>Road-trip routes, regional journeys, and the geography between destinations.</span><i>TAKE THE SCENIC ROUTE ↗</i></button>
+      </div>
+      <div class="journal-footnote"><span>✳</span> A GOOD ATLAS NEVER STOPS AT THE BORDER OF THE MAP.</div>
+    </section>
+
+    <section class="view" id="fieldnotesView" aria-labelledby="fieldnotesTitle">
+      <div class="section-topline"><button class="back-link" data-view="journal">← THE JOURNAL</button><span class="eyebrow">01 · CITY STORIES</span></div>
+      <div class="editorial-hero"><div><p class="issue-date">THE CITY NOTEBOOK</p><h1 id="fieldnotesTitle">Field<br><em>Notes.</em></h1><p>Every capital has a story that doesn't fit on a road sign. Start with a few notes from the places that make America.</p></div><div class="editorial-stamp">OBSERVE<br>WANDER<br>REMEMBER</div></div>
+      <div class="feature-note" id="fieldNoteFeature"></div>
+      <div class="editorial-list" id="fieldNotesList"></div>
+    </section>
+
+    <section class="view" id="spotlightView" aria-labelledby="spotlightTitle">
+      <div class="section-topline"><button class="back-link" data-view="journal">← THE JOURNAL</button><span class="eyebrow">02 · STATE PORTRAITS</span></div>
+      <div class="editorial-hero"><div><p class="issue-date">A CLOSER LOOK AT THE MAP</p><h1 id="spotlightTitle">State<br><em>Spotlight.</em></h1><p>Fifty states, fifty different characters. Choose a state and get to know its capital, region, and defining details.</p></div><div class="editorial-stamp">50 STATES<br>50 STORIES</div></div>
+      <div class="spotlight-picker"><label for="spotlightSelect">PICK A STATE</label><select id="spotlightSelect"></select></div>
+      <article class="spotlight-feature" id="spotlightFeature"></article>
+    </section>
+
+    <section class="view" id="longwayView" aria-labelledby="longwayTitle">
+      <div class="section-topline"><button class="back-link" data-view="journal">← THE JOURNAL</button><span class="eyebrow">03 · ROADS & ROUTES</span></div>
+      <div class="editorial-hero"><div><p class="issue-date">TAKE THE SCENIC ROUTE</p><h1 id="longwayTitle">The Long<br><em>Way 'Round.</em></h1><p>Not every journey is about getting there quickly. Some roads are worth taking for everything you find along the way.</p></div><div class="editorial-stamp">MILE<br>AFTER<br>MILE</div></div>
+      <div class="route-feature"><div class="route-poster"><span>THE MOTHER ROAD</span><strong>ROUTE<br>66</strong><small>CHICAGO → SANTA MONICA</small></div><div class="route-story"><p class="eyebrow">A CLASSIC AMERICAN CROSSING</p><h2>Eight stops.<br><em>One legendary road.</em></h2><p>Route 66 links the Midwest to the Pacific, passing through small towns, open plains, desert country, and the edge of the ocean. This is a sampler of its changing scenery—not turn-by-turn navigation.</p><div class="route-stops" id="routeStops"></div></div></div>
+      <div class="longway-note"><strong>THE LONG WAY 'ROUND</strong><span>Travel slowly. Look out the window. Take the road that gives you a story.</span></div>
     </section>
 
     <section class="view" id="collectionView" aria-labelledby="collectionTitle">
